@@ -39,17 +39,18 @@ def pump_instance_test():
             ser=serial.Serial(port=str(port_name), baudrate=19200, timeout=5, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE )
             ser.open()
             if ser.is_open:
-                   #try all possible addresses
-                    for n in range(10):
-                        ser.reset_input_buffer()
-                        pumpAddress = f"{n:02}"
-                        test_message = f"{pumpAddress} VER \r"
-                        ser.write(test_message.encode('utf-8'))
-                        time.sleep(0.1)
-                        raw_response=ser.read(ser.in_waiting)
-                        response=decode_NE1000_responses(raw_response)
-                        if "NE" in response:
-                            correct_port=port_name
+                #try all possible addresses
+                for n in range(10):
+                    ser.reset_input_buffer()
+                    pumpAddress = f"{n:02}"
+                    test_message = f"{pumpAddress} VER \r"
+                    ser.write(test_message.encode('utf-8'))
+                    time.sleep(0.1)
+                    raw_response=ser.read(ser.in_waiting)
+                    response=decode_NE1000_responses(raw_response)
+                    if "NE" in response:
+                        correct_port=port_name
+                ser.close()
         except Exception as err:
             print("tested: ", port_name)
             print(err)
