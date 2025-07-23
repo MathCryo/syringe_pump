@@ -24,9 +24,6 @@ def pump_instance_test():
         # print("Trying port: ", port_name)
         try:
             print("Trying port: ", port_name)
-            os.chmod(port_name,stat.S_IRGRP )
-            # os.chmod(port_name,stat.S_IXGRP )
-            os.chmod(port_name,stat.S_IWGRP )
             ser=serial.Serial(port=str(port_name), baudrate=19200, timeout=5, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE )
             if ser.is_open:
                 print("Connected to PORT ON: ", port_name, "Checking for NE pump firmware...")
@@ -38,21 +35,21 @@ def pump_instance_test():
                     # print(test_message.encode('utf-8'))
                     raw_response=write_to_NE_and_get_response(ser,test_message)
                     # print(raw_response)
-                    if "NE" in response:
-                        correct_port=port_name
+                    if "NE" in raw_response:
+                        correct_port=f"'{port_name}'"
                 ser.close()
         except PermissionError as err:
             lock_count=lock_count+1
             # print(err)
         except Exception as err:
             # print("tested: ", port_name, " it was not correct.")
-            # print(err)
+    print(err)
             continue
         else:
             # print("tested: ", port_name, " it was not correct.")
             continue
     if correct_port:
-        print("Correct port is: ", correct_port)
+        print("CORRECT PORT IS: ", correct_port)
     else:
         print("Correct port not found, check connection and permissions!")
         if lock_count== len(port_list):
