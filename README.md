@@ -42,22 +42,15 @@ The suggested way to run this script is using pip. Eventually, this script will 
    ```code python find_correct_port.py```
    If you have trouble identifying the correct port, PySerial has a set of tools for scanning the ports on your computer
    To scan the ports, use:
-   ### On Linux/macOS
-      ```code sudo chmod + Pythonscript_jove_2025.py```
+   ### On most OSes:
+      ```code python serial.tools.list_ports```
 
-
-    ### On Windows (Command Prompt)
-
-
-    ### On Windows (PowerShell)
- 
-   
    Note that on some operating systems, you may need to grant access to read/write to the port in order for the script to work.
     ### On Linux/macOS
-      ```code sudo chmod +765 Pythonscript_jove_2025.py```
-   this will have to be rerun each time you log out/reboot, to avoid running the code as 'sudo' a better option is to set the user to have access to the port
-   navigate to the the port and do
-   sudo usermod -a -G dialout $USER
+      ```code sudo chmod 765 Pythonscript_jove_2025.py```
+   #### This will have to be rerun each time you log out/reboot. To avoid running the code as 'sudo', a better option is to set the user to have access to the port.
+   - Navigate to the port and do
+   ```code sudo usermod -a -G dialout $USER ``` (the usergroup will be uucp for the arch users, but if that's you (or some similar distro), you probably don't need this guide)
 
     ### On Windows (Command Prompt)
 
@@ -66,7 +59,7 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 8. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
-   You will probably get an error if you don't do this, but if something is wrong with the rates being pumped and it isnt the code, this is probably it.
+   You will likely encounter an error if you don't do this, but if something is wrong with the rates being pumped and it isn't the code, this is probably the cause.
    
 10. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
    More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  If you want to run the code with the right timing but without actually pumping anything,
