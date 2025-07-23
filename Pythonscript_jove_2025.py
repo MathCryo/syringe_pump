@@ -61,9 +61,9 @@ def test_pump_addresses(number_of_pumps):
                 ser.reset_input_buffer()
                 pumpAddress = f"{n:02}"
                 test_message = f"{pumpAddress} VER\r"
-                print(test_message.encode('utf-8'))
+                # print(test_message.encode('utf-8'))
                 firmware_response=write_to_NE_and_get_response(ser,test_message)
-                print(firmware_response)
+                # print(firmware_response)
                 raw_response=write_to_NE_and_get_response(ser,test_message)
                 if "NE" in firmware_response:
                     address_list.append(n)
@@ -144,8 +144,7 @@ class PumpNE:
 async def mixing_test(porty,test_run=False):
     """ Run Pump Network with Gradual Rate Changes """
     with PumpNE(2, port=porty, test_run=test_run) as p1:  # Adjusted for 2 pumps
-        print(f"This is a test of a network of {p1.number_of_pumps} pumps")
-        CURRENT_PUMP_NETWORK=p1
+        print(f"This is a test of mixing on a network of {p1.number_of_pumps} pumps")
         # Set initial pump settings
         await p1.write_to_NE_and_log_response('00 DIA 10.30\r')  # Pump A diameter
         await p1.write_to_NE_and_log_response('01 DIA 10.30\r')  # Pump B diameter
@@ -227,7 +226,7 @@ async def main():
     try:
         ## Port value also needs to be set here
         # porty = '/dev/ttyUSB0'
-        await mixing_test(PORT, test_run=True)
+        await mixing_test(PORT, test_run=False)
     except PermissionError as e:
         print("File or Port does not have the correct level of permission, try running as administrator! or adjust read/write access to allow port this directory")
     except Exception as e:
@@ -237,11 +236,12 @@ async def main():
             await p1.write_to_NE_and_log_response('01 STP\r')
     finally:
         # stop all pumps even if code is exited or interupted
-        with PumpNE(2) as p1:
-            for n in range(10):
-                pumpAddress = f"{n:02}"
-                test_message = f"{pumpAddress} STP\r"
-                await p1.write_to_NE_and_log_response(test_message)
+        if CURRENT_PUMP_NETWORK:
+            with PumpNE(2) as p1:
+                for n in range(10):
+                    pumpAddress = f"{n:02}"
+                    test_message = f"{pumpAddress} STP\r"
+                    await p1.write_to_NE_and_log_response(test_message)
 
 if __name__ == '__main__':
     pretest()
