@@ -6,7 +6,7 @@ A script to run a network of NE-1000 SyringeONE syringe pumps.
 ## Set up
 The suggested way to run this script is using pip. Eventually, this script will get a GUI, time permitting.
 1. Set up your virtual Python environment using something like:
-   ```{code} python -m venv my_project_venv ```
+   ```code python -m venv my_project_venv ```
 2. Activate the virtual environment
     ### On Linux/macOS
     ```{code} source my_project_venv/bin/activate ```
