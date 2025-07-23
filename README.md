@@ -9,19 +9,23 @@ The suggested way to run this script is using pip. Eventually, this script will 
    ```{code} python -m venv my_project_venv ```
 2. Activate the virtual environment
     ### On Linux/macOS
-    source my_project_venv/bin/activate
+    ```{code} source my_project_venv/bin/activate ```
 
     ### On Windows (Command Prompt)
-    my_project_venv\Scripts\activate.bat
+    ```{code} my_project_venv\Scripts\activate.bat ```
 
     ### On Windows (PowerShell)
-    my_project_venv\Scripts\Activate.ps1
-3. Install the dependencies using the requirements.txt file:
-       pip install -r requirements.txt
-4. Set all the script permissions to executable as well as the folder for storing log files
-   ### On Linux/macOS
+    ```{code} my_project_venv\Scripts\Activate.ps1 ```
    
-
+4. Install the dependencies using the requirements.txt file:
+   ```{code} pip install -r requirements.txt ```
+5. Set all the script permissions to executable as well as the folder for storing log files
+   ### On Linux/macOS
+   - Navigate to the folder with the script
+   ```{code} sudo chmod +x Pythonscript_jove_2025.py```
+   - go up one level and give the folder read/write/exectute if needed (Mac):
+   ```{code} cd..```
+   ```{code} sudo chmod 775```
     ### On Windows (Command Prompt)
 
 
@@ -29,7 +33,7 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 
-6. Make sure the pumps have been wired correctly (see diagram below) and run (script A) to find the correct port:
+7. Make sure the pumps have been wired correctly (see diagram below) and run (script A) to find the correct port:
    If you have trouble identifying the correct port, PySerial has a set of tools for scanning the ports on your computer
    To scan the ports, use:
    ### On Linux/macOS
@@ -51,7 +55,7 @@ The suggested way to run this script is using pip. Eventually, this script will 
     ### On Windows (PowerShell)
  
    
-7. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
+8. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
    
-8. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
+9. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
    More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  
