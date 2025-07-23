@@ -19,13 +19,15 @@ The suggested way to run this script is using pip. Eventually, this script will 
     ```code my_project_venv\Scripts\Activate.ps1 ```
    
 3. Install the dependencies using the requirements.txt file:
+   ###
    ```code pip install -r requirements.txt ```
    
 5. Set all the script permissions to executable as well as the folder for storing log files
    ### On Linux/macOS
-   - Navigate to the folder with the script
+   - Navigate to the folder with the scripts
    ```code sudo chmod +x Pythonscript_jove_2025.py```
-   - go up one level and give the folder read/write/exectute if needed (Mac):
+   ```code sudo chmod +x find_correct_port.py```
+   - (*If Needed*) go up one level and give the folder read/write/execute (Mac OS):
    ```code cd..```
    ```code sudo chmod 775```
     ### On Windows (Command Prompt)
@@ -35,11 +37,14 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 
-6. Make sure the pumps have been wired correctly (see diagram below) and run (script A) to find the correct port:
+6. Make sure the pumps have been wired correctly (see user manual if needed) and run (find_correct_port.py) to find the correct port:
+
+   ```code python find_correct_port.py```
    If you have trouble identifying the correct port, PySerial has a set of tools for scanning the ports on your computer
    To scan the ports, use:
    ### On Linux/macOS
-   
+      ```code sudo chmod + Pythonscript_jove_2025.py```
+
 
     ### On Windows (Command Prompt)
 
@@ -49,7 +54,10 @@ The suggested way to run this script is using pip. Eventually, this script will 
    
    Note that on some operating systems, you may need to grant access to read/write to the port in order for the script to work.
     ### On Linux/macOS
-   
+      ```code sudo chmod +765 Pythonscript_jove_2025.py```
+   this will have to be rerun each time you log out/reboot, to avoid running the code as 'sudo' a better option is to set the user to have access to the port
+   navigate to the the port and do
+   sudo usermod -a -G dialout $USER
 
     ### On Windows (Command Prompt)
 
@@ -58,6 +66,8 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 8. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
+   You will probably get an error if you don't do this, but if something is wrong with the rates being pumped and it isnt the code, this is probably it.
    
-9. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
-   More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  
+10. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
+   More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  If you want to run the code with the right timing but without actually pumping anything,
+   use test_run=True
