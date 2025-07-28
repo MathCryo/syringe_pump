@@ -1,9 +1,12 @@
 # syringe_pump
-A script to run a network of NE-1000 SyringeONE syringe pumps.
+A script to run a network of NE-1000 SyringeONE syringe pumps. Along with files for 3D printing a microfluidic mixing slide and connectors. 
+For instructions on how to assemble and seal the slide, please see the published work at:
+
+
 ## NOTE: Always perform a test run with no solutions or just water to ensure everything is working properly. 
 ### If the script is cancelled during a run, it should send a stop command to all the pumps. However, if this signal is interrupted, the pumps will continue to run.
 
-## Set up
+## Script Set up
 The suggested way to run this script is using pip. Eventually, this script will get a GUI, time permitting.
 1. Set up your virtual Python environment using something like:
 
@@ -22,14 +25,14 @@ The suggested way to run this script is using pip. Eventually, this script will 
    ###
    ``` pip install -r requirements.txt ```
    
-5. Set all the script permissions to executable as well as the folder for storing log files
+4. Set all the script permissions to executable as well as the folder for storing log files
    ### On Linux/macOS
    - Navigate to the folder with the scripts
    ``` sudo chmod +x Pythonscript_jove_2025.py```
    ``` sudo chmod +x find_correct_port.py```
    - (*If Needed*) go up one level and give the folder read/write/execute (Mac OS):
    ``` cd..```
-   ``` sudo chmod 775```
+   ``` sudo chmod .../folder_name 775```
     ### On Windows (Command Prompt)
 
 
@@ -37,7 +40,7 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 
-6. Make sure the pumps have been wired correctly (see user manual if needed) and run (find_correct_port.py) to find the correct port:
+5. Make sure the pumps have been wired correctly (see user manual if needed) and run (find_correct_port.py) to find the correct port:
 
    ``` python find_correct_port.py```
    If you have trouble identifying the correct port, PySerial has a set of tools for scanning the ports on your computer
@@ -58,9 +61,9 @@ The suggested way to run this script is using pip. Eventually, this script will 
     ### On Windows (PowerShell)
  
    
-8. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
+6. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
    You will likely encounter an error if you don't do this, but if something is wrong with the rates being pumped and it isn't the code, this is probably the cause.
    
-10. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
+7. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
    More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  If you want to run the code with the right timing but without actually pumping anything,
    use test_run=True
