@@ -62,8 +62,8 @@ The suggested way to run this script is using pip. Eventually, this script will 
  
    
 6. Ensure the pump directly connected to the computer is set to address zero, and that each pump in the series is set to a unique address.
-   You will likely encounter an error if you don't do this, but if something is wrong with the rates being pumped and it isn't the code, this is probably the cause.
+   The code should throw an error if you don't do this, but if something is wrong with the rates being pumped and it isn't the code, this is probably the cause.
    
 7. Adjust the protocol to suit your experiment and perform a test run, making adjustments as needed. Comments in the code should direct you on how to make most adjustments.
    More advanced pump programming may require consulting the pySerial documentation and/or the pump user manual.  If you want to run the code with the right timing but without actually pumping anything,
-   use test_run=True
+   use test_run=True; this will issue a command asking the pump for its firmware version instead of issuing the run command.
