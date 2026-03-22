@@ -1,3 +1,10 @@
+This repository corresponds to the work presented in:
+Low-Cost 3D-Printed Microfluidic Devices for Rapid Prototyping and Biological Applications
+DOI: 10.3791/69494
+
+
+
+
 # syringe_pump
 A script to run a network of NE-1000 SyringeONE syringe pumps. Along with files for 3D printing a microfluidic mixing slide and connectors. 
 For instructions on how to assemble and seal the slide, please see the published work at:
