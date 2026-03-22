@@ -1,6 +1,8 @@
-This repository corresponds to the work presented in:
-Low-Cost 3D-Printed Microfluidic Devices for Rapid Prototyping and Biological Applications
-DOI: 10.3791/69494
+## This repository corresponds to the work presented in:
+
+### Low-Cost 3D-Printed Microfluidic Devices for Rapid Prototyping and Biological Applications
+
+*DOI: 10.3791/69494*
 
 
 
